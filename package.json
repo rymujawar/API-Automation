@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:qa": "playwright test --config=playwright.qa.config.js",
+    "test:uat": "playwright test --config=playwright.uat.config.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

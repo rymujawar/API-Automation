@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'node:fs';
 import { faker } from '@faker-js/faker';
+import { getEnvCreds } from '../helpers/getEnvCreds.js';
 
 function formatISODate(date) {
   return date.toISOString().split('T')[0];
@@ -68,10 +69,10 @@ test.describe.serial('Booking flow (create -> retrieve -> list)', () => {
   });
 
   test('Generate token', async ({ request }) => {
-    const payloadPath = './payload/generateToken.json';
-    const payload = JSON.parse(fs.readFileSync(payloadPath, 'utf-8'));
+    const payload = getEnvCreds();
 
-    const response = await request.post('https://restful-booker.herokuapp.com/auth', { data: payload });
+    const base = process.env.BASE_URL || 'https://restful-booker.herokuapp.com';
+    const response = await request.post(`${base}/auth`, { data: payload });
     await expect(response).toBeOK();
 
     const body = await response.json();
