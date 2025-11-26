@@ -67,4 +67,17 @@ test.describe.serial('Booking flow (create -> retrieve -> list)', () => {
     expect(found).toBeTruthy();
   });
 
+  test('Generate token', async ({ request }) => {
+    const payloadPath = './payload/generateToken.json';
+    const payload = JSON.parse(fs.readFileSync(payloadPath, 'utf-8'));
+
+    const response = await request.post('https://restful-booker.herokuapp.com/auth', { data: payload });
+    await expect(response).toBeOK();
+
+    const body = await response.json();
+    // The API returns { token: "..." }
+    expect(body).toBeTruthy();
+    expect(body.token).toBeTruthy();
+    console.log('Generated token:', body.token);
+  });
 });
