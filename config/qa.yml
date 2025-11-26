@@ -1,0 +1,4 @@
+BASE_URL: "https://qa.restful-booker.example"
+USERNAME: "qa_admin"
+PASSWORD: "qa_password123"
+ENV: "qa"

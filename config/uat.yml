@@ -1,0 +1,4 @@
+BASE_URL: "https://uat.restful-booker.example"
+USERNAME: "uat_admin"
+PASSWORD: "uat_password123"
+ENV: "uat"

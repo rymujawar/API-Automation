@@ -1,5 +1,9 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+import { loadYamlEnv } from './helpers/loadYamlEnv.js';
+
+// Load UAT YAML (overrides only missing env vars)
+loadYamlEnv('./config/uat.yml');
 
 export default defineConfig({
   testDir: './APITEST',
